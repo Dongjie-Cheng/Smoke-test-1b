@@ -1,0 +1,9 @@
+exp_name: exp_c_translation
+seed: 42
+directions: [zh_to_en, en_to_zh]
+prompts:
+  zh_to_en: project/prompts/translation/zh_to_en_v1.txt
+  en_to_zh: project/prompts/translation/en_to_zh_v1.txt
+outputs:
+  metrics: project/results/translation_metrics.csv
+  raw_outputs: project/results/raw_outputs/translation_outputs.jsonl

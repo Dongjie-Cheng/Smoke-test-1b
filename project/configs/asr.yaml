@@ -1,0 +1,6 @@
+exp_name: exp_a_asr
+seed: 42
+conditions: [clean, noisy_snr20, noisy_snr10, noisy_snr0]
+outputs:
+  metrics: project/results/asr_metrics.csv
+  raw_outputs: project/results/raw_outputs/asr_outputs.jsonl

@@ -1,0 +1,10 @@
+seed: 42
+temperature: 0
+andesvl:
+  model_name_or_path: OPPOer/AndesVL-0_6B-Instruct
+  thinking_model_name_or_path: OPPOer/AndesVL-0_6B-Thinking
+  max_new_tokens: 256
+qwen3_asr:
+  model_name_or_path: Qwen/Qwen3-ASR-0.6B
+  backend: transformers
+  max_new_tokens: 256
