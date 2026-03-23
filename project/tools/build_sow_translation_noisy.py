@@ -65,7 +65,7 @@ def main() -> None:
     parser.add_argument("--stage-dir", required=True)
     parser.add_argument("--esc50-root", default=None)
     parser.add_argument("--snr-db", type=float, default=20.0)
-    parser.add_argument("--resume", action="store_true", default=True)
+    parser.add_argument("--resume", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--commit-every", type=int, default=100)
     args = parser.parse_args()
@@ -87,7 +87,7 @@ def main() -> None:
 
     for direction in ("zh_to_en", "en_to_zh"):
         out_manifest = stage_dir / f"translation_{direction}_noisy_snr20.jsonl"
-        if out_manifest.exists() and not args.resume and not args.overwrite:
+        if out_manifest.exists() and (args.overwrite or not args.resume):
             out_manifest.unlink()
 
         done = _done_ids(out_manifest) if args.resume and not args.overwrite else set()

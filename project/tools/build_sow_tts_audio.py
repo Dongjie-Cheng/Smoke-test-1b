@@ -59,9 +59,9 @@ def _build_one_direction(
     out_manifest = stage_dir / f"translation_{direction}_audio_clean.jsonl"
     err_path = stage_dir / f"translation_{direction}_tts_errors.jsonl"
 
-    if not resume and out_manifest.exists() and not overwrite:
+    if out_manifest.exists() and (overwrite or not resume):
         out_manifest.unlink()
-    if not resume and err_path.exists() and not overwrite:
+    if err_path.exists() and (overwrite or not resume):
         err_path.unlink()
 
     done_ids = _load_done_ids(out_manifest) if resume and not overwrite else set()
@@ -175,7 +175,7 @@ def main() -> None:
     parser.add_argument("--tts-model", default=None)
     parser.add_argument("--speaker-wav", default=None)
     parser.add_argument("--speaker", default=None)
-    parser.add_argument("--resume", action="store_true", default=True)
+    parser.add_argument("--resume", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--max-samples", type=int, default=None)
     parser.add_argument("--commit-every", type=int, default=50)
