@@ -1,0 +1,9 @@
+{
+  "stage": "stage3",
+  "translation_track": "WMT19 zh-en/en-zh as reproducible public SOW-aligned proxy for WMT14/19 requirement",
+  "intent": {
+    "proxy_baseline": true,
+    "sow_aligned": false,
+    "pending_self_test_set": true
+  }
+}
