@@ -1,0 +1,12 @@
+python: 3.13.5
+torch: 2.10.0+cu128
+transformers: 4.57.6
+datasets: 4.8.3
+qwen_asr_importable: True
+cuda_available: True
+num_gpus: 1
+device_suggestion: cuda
+dtype_suggestion: float16
+andes_has_chat: True
+qwen_backend_transformers: True
+qwen_backend_vllm: False

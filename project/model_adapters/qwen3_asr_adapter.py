@@ -36,7 +36,7 @@ class Qwen3ASRAdapter:
                 self._log("backend=vllm requested but vllm missing; falling back to transformers")
                 self.backend = "transformers"
 
-        self.model = qwen_asr.Qwen3ASRModel.from_pretrained(model_name_or_path, backend=self.backend)
+        self.model = qwen_asr.Qwen3ASRModel.from_pretrained(model_name_or_path)
 
     def _log(self, msg: str):
         with self._log_file.open("a", encoding="utf-8") as f:
@@ -53,9 +53,53 @@ class Qwen3ASRAdapter:
             }
         return {"language": None, "text": str(raw).strip(), "timestamps": None, "raw": raw}
 
-    def transcribe_file(self, audio_path: str, language: str | None = None) -> Dict[str, Any]:
-        raw = self.model.transcribe(audio=audio_path, language=language)
-        return self._parse_result(raw)
+    def transcribe_file(self, audio_path: str, language: str | None = None) -> dict:
+        result = self.model.transcribe(audio=audio_path, language=language)
+
+        # 情况 1：官方对象列表，例如 [ASRTranscription(...)]
+        if isinstance(result, list) and len(result) > 0:
+            first = result[0]
+
+            lang = getattr(first, "language", None)
+            text = getattr(first, "text", "")
+            timestamps = getattr(first, "time_stamps", None)
+
+            return {
+                "language": lang or None,
+                "text": text or "",
+                "timestamps": timestamps,
+                "raw": result,
+            }
+
+        # 情况 2：dict
+        if isinstance(result, dict):
+            return {
+                "language": result.get("language"),
+                "text": result.get("text", ""),
+                "timestamps": result.get("timestamps") or result.get("time_stamps"),
+                "raw": result,
+            }
+
+        # 情况 3：单对象
+        lang = getattr(result, "language", None)
+        text = getattr(result, "text", None)
+        timestamps = getattr(result, "time_stamps", None)
+
+        if text is not None:
+            return {
+                "language": lang,
+                "text": text,
+                "timestamps": timestamps,
+                "raw": result,
+            }
+
+        # 兜底
+        return {
+            "language": None,
+            "text": str(result),
+            "timestamps": None,
+            "raw": result,
+        }
 
     def transcribe_batch(self, audio_paths: List[str], languages: List[str | None] | None = None) -> List[Dict[str, Any]]:
         languages = languages or [None] * len(audio_paths)
