@@ -1,0 +1,6 @@
+# Python bytecode/cache
+__pycache__/
+*.py[cod]
+
+# Generated dataset manifests/artifacts
+data_manifests/
