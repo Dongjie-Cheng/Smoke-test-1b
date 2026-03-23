@@ -1,0 +1,8 @@
+exp_name: exp_d_caption
+seed: 42
+prompts:
+  caption: project/prompts/caption/caption_v1.txt
+  ocr_rich: project/prompts/caption/ocr_rich_caption_v1.txt
+outputs:
+  metrics: project/results/caption_metrics.csv
+  raw_outputs: project/results/raw_outputs/caption_outputs.jsonl

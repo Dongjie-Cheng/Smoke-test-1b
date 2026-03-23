@@ -1,0 +1,7 @@
+exp_name: exp_b_intent
+seed: 42
+prompt_name: closed_set_v1
+prompt_path: project/prompts/intent/closed_set_v1.txt
+outputs:
+  metrics: project/results/intent_metrics.csv
+  raw_outputs: project/results/raw_outputs/intent_outputs.jsonl

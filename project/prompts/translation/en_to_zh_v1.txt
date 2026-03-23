@@ -1,0 +1,5 @@
+Translate the following English text into Chinese.
+Only output the translation.
+
+Text:
+{source}

@@ -1,0 +1,10 @@
+fleurs:
+  langs: [en_us, zh_cn]
+  split: test
+wmt19:
+  config_name: zh-en
+  split: validation
+flickr30k:
+  split: test
+esc50:
+  root: /path/to/ESC-50
