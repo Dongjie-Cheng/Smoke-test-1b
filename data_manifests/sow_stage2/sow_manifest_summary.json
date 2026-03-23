@@ -1,0 +1,23 @@
+{
+  "stage": "stage2",
+  "translation_track": "WMT19 zh-en/en-zh as reproducible public SOW-aligned track",
+  "targets": {
+    "translation_clean": 3000,
+    "translation_noisy": 2000,
+    "caption": 1000
+  },
+  "actual": {
+    "translation_clean_total": 0,
+    "caption_clean": 0,
+    "intent_proxy": 0
+  },
+  "blocking_reason": {
+    "translation_clean": "dataset_access_or_environment_limits",
+    "caption": "flickr30k_entities_raw_files_unavailable"
+  },
+  "intent": {
+    "proxy_baseline": true,
+    "sow_aligned": false,
+    "pending_self_test_set": true
+  }
+}

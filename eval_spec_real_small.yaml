@@ -1,5 +1,6 @@
 run_name: real_small_20260323
 out_root: /data/dongjie/smoke-test-1b-results
+
 device: cuda
 dtype: auto
 temperature: 0.0
@@ -22,7 +23,6 @@ prompts:
 tasks:
   asr:
     clean: data_manifests/real_small/asr_clean.jsonl
-    noisy_snr20: data_manifests/real_small/asr_noisy_snr20.jsonl
 
   intent:
     clean: data_manifests/real_small/intent_clean.jsonl
@@ -30,11 +30,9 @@ tasks:
 
   translation_zh_to_en:
     clean: data_manifests/real_small/translation_zh_to_en_clean.jsonl
-    noisy_snr20: data_manifests/real_small/translation_zh_to_en_noisy_snr20.jsonl
 
   translation_en_to_zh:
     clean: data_manifests/real_small/translation_en_to_zh_clean.jsonl
-    noisy_snr20: data_manifests/real_small/translation_en_to_zh_noisy_snr20.jsonl
 
   caption:
     clean: data_manifests/real_small/caption_clean.jsonl

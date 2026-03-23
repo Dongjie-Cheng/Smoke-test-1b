@@ -1,0 +1,43 @@
+run_name: sow_stage2_20260323
+out_root: /data/dongjie/smoke-test-1b-results
+
+device: cuda
+dtype: auto
+temperature: 0.0
+thinking: false
+andes_max_new_tokens: 256
+asr_max_new_tokens: 256
+asr_batch_size: 1
+
+targets:
+  translation_clean: 3000
+  translation_noisy: 2000
+  caption: 1000
+
+models:
+  andesvl: OPPOer/AndesVL-0_6B-Instruct
+  qwen3_asr: Qwen/Qwen3-ASR-0.6B
+  qwen3_asr_backend: transformers
+
+prompts:
+  intent: project/prompts/intent/closed_set_v1.txt
+  zh_to_en: project/prompts/translation/zh_to_en_v1.txt
+  en_to_zh: project/prompts/translation/en_to_zh_v1.txt
+  caption: project/prompts/caption/caption_v1.txt
+
+tasks:
+  translation_zh_to_en:
+    clean_text: data_manifests/sow_stage2/translation_zh_to_en_clean.jsonl
+    audio_clean: data_manifests/sow_stage2/translation_zh_to_en_audio_clean.jsonl
+    noisy_snr20: data_manifests/sow_stage2/translation_zh_to_en_noisy_snr20.jsonl
+
+  translation_en_to_zh:
+    clean_text: data_manifests/sow_stage2/translation_en_to_zh_clean.jsonl
+    audio_clean: data_manifests/sow_stage2/translation_en_to_zh_audio_clean.jsonl
+    noisy_snr20: data_manifests/sow_stage2/translation_en_to_zh_noisy_snr20.jsonl
+
+  caption:
+    clean: data_manifests/sow_stage2/caption_clean.jsonl
+
+  intent:
+    proxy_clean: data_manifests/sow_stage2/intent_proxy_clean.jsonl
