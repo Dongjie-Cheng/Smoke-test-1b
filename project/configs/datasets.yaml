@@ -1,10 +1,60 @@
+output_root: data_manifests
+
 fleurs:
   langs: [en_us, zh_cn]
   split: test
+  limit: null
+  sampling_rate: 16000
+  trust_remote_code: null
+
 wmt19:
   config_name: zh-en
   split: validation
+  limit: null
+  trust_remote_code: null
+
 flickr30k:
   split: test
+  limit: null
+  reference_mode: single_reference
+  trust_remote_code: null
+
 esc50:
   root: /path/to/ESC-50
+  snr_values: [20]
+
+external_manifests:
+  intent_clean: null
+
+tts:
+  voice: null
+  output_root: data_manifests/tts_audio
+
+real_small:
+  asr:
+    en_us: 50
+    zh_cn: 50
+  translation:
+    zh_to_en: 100
+    en_to_zh: 100
+  caption: 100
+
+real_full:
+  asr:
+    en_us: 200
+    zh_cn: 200
+  translation:
+    zh_to_en: 1000
+    en_to_zh: 1000
+  caption: 500
+
+
+sow:
+  flickr30k_entities_root: null
+  stage2:
+    translation_clean: 3000
+    caption_clean: 1000
+  stage3:
+    translation_clean: 5000
+    caption_clean: 1000
+    caption_human_review_size: 200
