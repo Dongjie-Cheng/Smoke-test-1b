@@ -47,14 +47,3 @@ real_full:
     zh_to_en: 1000
     en_to_zh: 1000
   caption: 500
-
-
-sow:
-  flickr30k_entities_root: null
-  stage2:
-    translation_clean: 3000
-    caption_clean: 1000
-  stage3:
-    translation_clean: 5000
-    caption_clean: 1000
-    caption_human_review_size: 200
